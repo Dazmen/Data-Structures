@@ -80,6 +80,14 @@ class LinkedList:
             self.tail = new_node
             self.size += 1
 
+    def remove_from_head(self):
+        if self.head == None:
+            return None
+        else:
+            value_removed = self.head.value
+            self.size -= 1
+            self.head = self.head.get_next()
+            return value_removed
             
     def remove_from_end(self):
         if self.head == None:
