@@ -1,4 +1,5 @@
 from queue import Queue
+from stack import Stack
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -57,9 +58,9 @@ class BinarySearchTree:
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
         fn(self.value)
-        if self.right != None:
+        if self.right is not None:
             self.right.for_each(fn)
-        if self.left != None:
+        if self.left is not None:
             self.left.for_each(fn)
 
     # Part 2 -----------------------
@@ -68,12 +69,12 @@ class BinarySearchTree:
     # Hint:  Use a recursive, depth first traversal
 
     def in_order_print(self, node):
-        if node.left != None:
+        if node.left is not None:
             node.left.in_order_print(node.left)
 
         print(node.value)
 
-        if node.right != None:
+        if node.right is not None:
             node.right.in_order_print(node.right)
     
 
@@ -101,7 +102,15 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        stack.push(node)
+        while stack.size > 0:
+            current = stack.pop()
+            if current.right != None:
+                stack.push(current.right)
+            if current.left != None:
+                stack.push(current.left)
+            print(current.value)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
